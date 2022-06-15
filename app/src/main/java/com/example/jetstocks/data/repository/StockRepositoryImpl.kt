@@ -42,7 +42,7 @@ class StockRepositoryImpl @Inject constructor(
                 return@flow
             }
             val remoteListings = try {
-                val response = api.getListings(query)
+                val response = api.getListings()
                 //Todo : Get the CSV file and convert it which is going to be in another function because this method / function
                 // is only for the getting the list from cache or network call
                 // SINGLE FUNCTION FOR SINGLE WORK
