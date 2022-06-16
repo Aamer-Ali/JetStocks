@@ -5,6 +5,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.jetstocks.display.company_info.CompanyInfoScreen
 import com.example.jetstocks.display.company_listing.CompanyListingViewModel
 import com.example.jetstocks.display.company_listing.CompanyListingsScreen
 
@@ -18,10 +19,14 @@ fun JetStockNavigation() {
 
         composable(route = JetStockScreens.CompanyListingScreen.name) {
             val companyListingViewModel = hiltViewModel<CompanyListingViewModel>()
-            CompanyListingsScreen(viewModel = companyListingViewModel)
+            CompanyListingsScreen(
+                viewModel = companyListingViewModel,
+                navController = navController
+            )
         }
 
         composable(route = JetStockScreens.CompanyInfoScreen.name) {
+            CompanyInfoScreen()
         }
     }
 }

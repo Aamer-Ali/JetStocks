@@ -14,6 +14,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import com.example.jetstocks.navigation.JetStockScreens
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.ramcosta.composedestinations.annotation.Destination
@@ -58,12 +60,11 @@ import com.ramcosta.composedestinations.annotation.RootNavGraph
 //}
 
 
-
-
 @Composable
 
 fun CompanyListingsScreen(
-    viewModel: CompanyListingViewModel
+    viewModel: CompanyListingViewModel,
+    navController: NavController
 ) {
     val swipeRefreshState = rememberSwipeRefreshState(
         isRefreshing = viewModel.states.isRefresh
@@ -105,13 +106,17 @@ fun CompanyListingsScreen(
                             .fillMaxWidth()
                             .clickable {
                                 // TODO: Navigate to detail screen
+                                Log.d("Item Tap", "CompanyListingsScreen: ${company.name}")
+                                navController.navigate(JetStockScreens.CompanyInfoScreen.name)
                             }
                             .padding(16.dp)
                     )
-                    if(i < state.companies.size) {
-                        Divider(modifier = Modifier.padding(
-                            horizontal = 16.dp
-                        ))
+                    if (i < state.companies.size) {
+                        Divider(
+                            modifier = Modifier.padding(
+                                horizontal = 16.dp
+                            )
+                        )
                     }
                 }
             }
